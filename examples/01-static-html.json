@@ -1,0 +1,58 @@
+{
+  "bookSourceUrl": "https://www.example.com",
+  "bookSourceName": "示例站·静态HTML",
+  "bookSourceGroup": "示例",
+  "bookSourceType": 0,
+  "bookSourceComment": "A 类（静态 HTML）模板；example.com 为保留域名，仅演示字段写法；2026-11-01 编写，需替换为真实站点后再验证",
+  "customOrder": 0,
+  "enabled": true,
+  "enabledExplore": true,
+  "concurrentRate": "500",
+  "header": "{\"User-Agent\":\"Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36\"}",
+  "bookUrlPattern": "https://www\\.example\\.com/book/\\d+",
+  "searchUrl": "/search?q={{java.encodeURI(key)}}&page={{page}}",
+  "exploreUrl": "[{\"title\":\"玄幻\",\"url\":\"/sort/xuanhuan?page={{page}}\"},{\"title\":\"都市\",\"url\":\"/sort/dushi?page={{page}}\"},{\"title\":\"完结\",\"url\":\"/sort/finish?page={{page}}\"}]",
+  "ruleSearch": {
+    "checkKeyWord": "搜索",
+    "bookList": "class.result-list@tag.li",
+    "name": "class.book-name@text||tag.h3@text",
+    "author": "class.author@text##作者[:：]\\s*##",
+    "intro": "class.desc@text",
+    "kind": "class.cate@text",
+    "lastChapter": "class.latest@tag.a@text",
+    "updateTime": "class.update-time@text",
+    "bookUrl": "tag.a@href",
+    "coverUrl": "tag.img@data-original||tag.img@src"
+  },
+  "ruleExplore": {
+    "bookList": "class.result-list@tag.li",
+    "name": "class.book-name@text",
+    "author": "class.author@text",
+    "bookUrl": "tag.a@href",
+    "coverUrl": "tag.img@src",
+    "lastChapter": "class.latest@text"
+  },
+  "ruleBookInfo": {
+    "name": "class.book-info@tag.h1@text",
+    "author": "class.book-info@class.author@text##作者[:：]\\s*##",
+    "intro": "class.intro@html##<br\\s*/?>##\n",
+    "kind": "class.book-info@class.cate@text",
+    "lastChapter": "class.book-info@class.latest@tag.a@text",
+    "updateTime": "class.book-info@class.update-time@text",
+    "coverUrl": "class.book-cover@tag.img@src",
+    "tocUrl": "class.btn-catalog@href",
+    "wordCount": "class.book-info@class.word-count@text##字##"
+  },
+  "ruleToc": {
+    "chapterList": "id.chapter-list@tag.li",
+    "chapterName": "tag.a@text",
+    "chapterUrl": "tag.a@href",
+    "isVip": "class.lock@text##.*##true",
+    "nextTocUrl": "tag.a:contains(下一页)@href||class.pagination@tag.a[-1]@href"
+  },
+  "ruleContent": {
+    "content": "id.content@html##<br\\s*/?>##\n##<[^>]+>##",
+    "nextContentUrl": "class.page-next@tag.a@href",
+    "replaceRegex": "##(本章未完|请记住本站|一秒记住).*?$"
+  }
+}

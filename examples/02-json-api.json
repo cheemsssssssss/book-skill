@@ -1,0 +1,50 @@
+{
+  "bookSourceUrl": "https://api.example.com",
+  "bookSourceName": "示例站·接口型",
+  "bookSourceGroup": "示例",
+  "bookSourceType": 0,
+  "bookSourceComment": "B 类（JSON API）模板；example.com 为保留域名，仅演示 JSONPath 写法；2026-11-01 编写，接入真实接口前需核对 header 与字段路径",
+  "enabled": true,
+  "enabledExplore": false,
+  "concurrentRate": "300",
+  "header": "{\"User-Agent\":\"Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36\",\"Referer\":\"https://www.example.com/\",\"Accept\":\"application/json\"}",
+  "searchUrl": "/api/search?kw={{java.encodeURI(key)}}&page={{page}}&size=20",
+  "ruleSearch": {
+    "checkKeyWord": "data",
+    "bookList": "$.data.list[*]",
+    "name": "$.title",
+    "author": "$.author_name",
+    "intro": "$.description",
+    "kind": "$.category",
+    "lastChapter": "$.last_chapter",
+    "updateTime": "$.updated_at",
+    "bookUrl": "$.book_id",
+    "coverUrl": "$.cover_url",
+    "wordCount": "$.word_count"
+  },
+  "ruleBookInfo": {
+    "init": "@js:baseUrl + '/api/book/' + result",
+    "name": "$.data.title",
+    "author": "$.data.author_name",
+    "intro": "$.data.description",
+    "kind": "$.data.category",
+    "lastChapter": "$.data.last_chapter",
+    "updateTime": "$.data.updated_at",
+    "coverUrl": "$.data.cover_url",
+    "tocUrl": "@js:baseUrl + '/api/book/' + result.book_id + '/chapters'",
+    "wordCount": "$.data.word_count"
+  },
+  "ruleToc": {
+    "chapterList": "$.data.chapters[*]",
+    "chapterName": "$.title",
+    "chapterUrl": "$.chapter_id",
+    "updateTime": "$.updated_at",
+    "isVip": "$.is_vip",
+    "nextTocUrl": "$.data.next_page_url"
+  },
+  "ruleContent": {
+    "content": "@js:JSON.parse(result).data.content",
+    "nextContentUrl": "$.data.next_url",
+    "replaceRegex": "##<[^>]+>##"
+  }
+}

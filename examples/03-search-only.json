@@ -1,0 +1,40 @@
+{
+  "bookSourceUrl": "https://m.example.com",
+  "bookSourceName": "示例站·仅搜索+正则兜底",
+  "bookSourceGroup": "示例",
+  "bookSourceType": 0,
+  "bookSourceComment": "E 类（无分类页，仅搜索）+ 结构脏时用 sourceRegex 取正文的写法；example.com 为保留域名；2026-11-01 编写，需替换域名后在 App 内验证",
+  "enabled": true,
+  "enabledExplore": false,
+  "enabledCookieJar": true,
+  "concurrentRate": "1000",
+  "header": "{\"User-Agent\":\"Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1\"}",
+  "searchUrl": "/s?q={{java.encodeURI(key)}}",
+  "ruleSearch": {
+    "checkKeyWord": "搜索结果",
+    "bookList": "class.search-list@class.item",
+    "name": "tag.h4@text##\\s+##",
+    "author": "class.meta@text##.*作者[:：]\\s*([^\\s|]+).*##$1",
+    "intro": "class.meta@text",
+    "bookUrl": "tag.a@href",
+    "coverUrl": "tag.img@src##^//##https://"
+  },
+  "ruleBookInfo": {
+    "name": "class.detail@tag.h1@text||tag.title@text##_.*##",
+    "author": "class.detail@class.meta@text##.*作者[:：]\\s*([^\\s|]+).*##$1",
+    "intro": "class.detail@class.desc@html##<br\\s*/?>##\n",
+    "coverUrl": "class.detail@tag.img@src",
+    "tocUrl": "class.detail@class.to-catalog@href||{{bookUrl}}",
+    "lastChapter": "class.detail@class.latest@text"
+  },
+  "ruleToc": {
+    "chapterList": "id.list@tag.li||class.chapter-list@tag.li",
+    "chapterName": "tag.a@text",
+    "chapterUrl": "tag.a@href",
+    "nextTocUrl": "tag.a:contains(下一页)@href||class.pager@tag.a[-1]@href"
+  },
+  "ruleContent": {
+    "sourceRegex": "<div[^>]+id=[\"']?content[\"']?[^>]*>([\\s\\S]*?)</div>",
+    "replaceRegex": "##<(script|style)[\\s\\S]*?</\\1>|(本章未完|点击下一页继续阅读|请记住本站).*?$"
+  }
+}
